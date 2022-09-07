@@ -44,9 +44,9 @@ public class Email {
 
 	}
 
-	public boolean sendEmailMime(String userMail,String userId) {
+	public boolean sendEmailMime(String userMail, String userId) {
 
-		String url = "https://unenumapcheck.herokuapp.com/Registrierung/"+userId;
+		String url = "https://unenumapcheck.herokuapp.com/Registrierung/" + userId;
 		String content = "<a href='" + url + "'>Registrierung abschließen</a>";
 
 		Properties prop = new Properties();
@@ -72,7 +72,10 @@ public class Email {
 							+ content);
 			message.setSentDate(new Date());
 			// Send the actual HTML message, as big as you like
-			message.setContent("<h1>This is actual message embedded in HTML tags</h1>" + content, "text/html");
+			message.setContent(
+					"<h1>Registrierung SHARE bestätigen</h1>\n\nVielen Dank, das Sie sich für die Registrierung bei SHARE entschieden haben.\nSchließen Sie Ihre Registrieung ab, indem Sie auf folgenden Link klicken.\n\n"
+							+ content,
+					"text/html,UTF-8");
 
 			Transport.send(message);
 
