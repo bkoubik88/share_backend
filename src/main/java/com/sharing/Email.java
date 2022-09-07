@@ -67,13 +67,11 @@ public class Email {
 			message.setFrom(new InternetAddress("info@unenu.de"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userMail));
 			message.setSubject("Registrierung abschließen");
-			message.setText(
-					"Vielen Dank, das Sie sich für die Registration bei SHARE entschieden haben.\nSchließen Sie Ihre Registrieung ab, indem Sie auf folgenden Link klicken.\n\n"
-							+ content);
+		
 			message.setSentDate(new Date());
 			// Send the actual HTML message, as big as you like
 			message.setContent(
-					"<img style='width:50px,height:50px' src='https://firebasestorage.googleapis.com/v0/b/sharing-c83d9.appspot.com/o/logo%2Fearth-globe.png?alt=media&token=60107103-3840-48bc-86c7-3e846bffb92e' />\n\n\n<h1>Registrierung SHARE bestätigen</h1>\n\nVielen Dank, das Sie sich für die Registrierung bei SHARE entschieden haben.\nSchließen Sie Ihre Registrieung ab, indem Sie auf folgenden Link klicken.\n\n"
+					"<img style='width:50px;height:50px' alt='Logo Share' src='https://firebasestorage.googleapis.com/v0/b/sharing-c83d9.appspot.com/o/logo%2Fearth-globe.png?alt=media&token=60107103-3840-48bc-86c7-3e846bffb92e' />\n\n\n<h1>Registrierung SHARE bestätigen</h1>\n\nVielen Dank, das Sie sich für die Registrierung bei SHARE entschieden haben.\nSchließen Sie Ihre Registrieung ab, indem Sie auf folgenden Link klicken.\n\n"
 							+ content,
 					"text/html;charset=UTF-8");
 
