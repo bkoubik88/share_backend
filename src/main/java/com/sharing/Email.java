@@ -75,7 +75,7 @@ public class Email {
 			message.setContent(
 					"<h1>Registrierung SHARE bestätigen</h1>\n\nVielen Dank, das Sie sich für die Registrierung bei SHARE entschieden haben.\nSchließen Sie Ihre Registrieung ab, indem Sie auf folgenden Link klicken.\n\n"
 							+ content,
-					"text/html,UTF-8");
+					"text/html;charset=UTF-8");
 
 			Transport.send(message);
 
