@@ -12,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -19,45 +20,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class Email {
 
-	@Autowired
-	private JavaMailSender mailSender;
+	//@Autowired
+	//private JavaMailSender mailSender;
 
-	public boolean sendEmail(String userMail) throws MessagingException {
+	@Value("${spring.mail.username}")
+	private String username;
 
-		try {
-			SimpleMailMessage message = new SimpleMailMessage();
-			message.setFrom("info@unenu.de");
-			message.setTo(userMail);
-			message.setText("Test");
-			message.setSubject("HUHU");
-
-			mailSender.send(message);
-
-			return true;
-		}
-
-		// Catch block to handle the exceptions
-		catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-
-	}
+	@Value("${spring.mail.password}")
+	private String password;
 
 	public boolean sendEmailMime(String userMail, String userId) {
 
-		String url = "https://unenumapcheck.herokuapp.com/registrierung/"+userId;
+		String url = "https://unenumapcheck.herokuapp.com/registrierung/" + userId;
 		String content = "<a href='" + url + "'>Registrierung abschließen</a>";
 
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
 		prop.put("mail.smtp.port", "587");
 		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.starttls.enable", "true"); // TLS
+		prop.put("mail.smtp.starttls.enable", "true");
 
 		Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("sharingunenu@gmail.com", "qcmxmejrnedflcve");
+				return new PasswordAuthentication(username, password);
 			}
 		});
 
@@ -67,9 +52,9 @@ public class Email {
 			message.setFrom(new InternetAddress("info@unenu.de"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userMail));
 			message.setSubject("Registrierung abschließen");
-		
+
 			message.setSentDate(new Date());
-			// Send the actual HTML message, as big as you like
+		
 			message.setContent(
 					"<img style='width:50px;height:50px' alt='Logo Share' src='https://firebasestorage.googleapis.com/v0/b/sharing-c83d9.appspot.com/o/logo%2Fearth-globe.png?alt=media&token=60107103-3840-48bc-86c7-3e846bffb92e' />\n\n\n<h1>Registrierung SHARE bestätigen</h1>\n\nVielen Dank, das Sie sich für die Registrierung bei SHARE entschieden haben.\nSchließen Sie Ihre Registrieung ab, indem Sie auf folgenden Link klicken.\n\n"
 							+ content,
