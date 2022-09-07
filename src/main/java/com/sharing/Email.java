@@ -46,7 +46,7 @@ public class Email {
 
 	public boolean sendEmailMime(String userMail, String userId) {
 
-		String url = "https://unenumapcheck.herokuapp.com/Registrierung/" + userId;
+		String url = "https://unenumapcheck.herokuapp.com/registrierung/"+userId;
 		String content = "<a href='" + url + "'>Registrierung abschließen</a>";
 
 		Properties prop = new Properties();
