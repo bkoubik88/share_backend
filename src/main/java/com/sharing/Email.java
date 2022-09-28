@@ -31,7 +31,7 @@ public class Email {
 
 	public boolean sendEmailMime(String userMail, String userId) {
 
-		String url = "https://unenumapcheck.herokuapp.com/registrierung/" + userId;
+		String url = "https://www.unenucheckmap.com/registrierung/" + userId;
 		String content = "<a href='" + url + "'>Registrierung abschließen</a>";
 
 		Properties prop = new Properties();
@@ -56,7 +56,7 @@ public class Email {
 			message.setSentDate(new Date());
 		
 			message.setContent(
-					"<img style='width:50px;height:50px' alt='Logo Share' src='https://firebasestorage.googleapis.com/v0/b/sharing-c83d9.appspot.com/o/logo%2Fearth-globe.png?alt=media&token=60107103-3840-48bc-86c7-3e846bffb92e' />\n\n\n<h1>Registrierung SHARE bestätigen</h1>\n\nVielen Dank, das Sie sich für die Registrierung bei SHARE entschieden haben.\nSchließen Sie Ihre Registrieung ab, indem Sie auf folgenden Link klicken.\n\n"
+					"<img style='width:20px;height:20px' alt='Logo Share' src='https://firebasestorage.googleapis.com/v0/b/sharing-c83d9.appspot.com/o/logo%2Fearth-globe.png?alt=media&token=60107103-3840-48bc-86c7-3e846bffb92e' />\n\n\n<h1>Registrierung SHARE bestätigen</h1>\n\nVielen Dank, das Sie sich für die Registrierung bei SHARE entschieden haben.\nSchließen Sie Ihre Registrieung ab, indem Sie auf folgenden Link klicken.\n\n"
 							+ content,
 					"text/html;charset=UTF-8");
 
